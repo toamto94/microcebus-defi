@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import Farm from './Farm.js';
+import { getWeb3, getMicrocebus } from './web3utils.js';
+
 
 const wmatic_dai = {
   id: 0,
@@ -12,10 +14,11 @@ const wmatic_dai = {
 
 function App() {
   const [farmList, setFarmList] = useState(undefined);
+  const [web3, setWeb3] = useState(undefined);
 
   const updateFarmList = (token0, token1, token0_name, token1_name) => {
     const newFarm = {
-      id: farmList.length,
+      id: 0,
       token0: token0,
       token1: token1,
       token0_name: token0_name,

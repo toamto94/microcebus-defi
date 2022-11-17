@@ -1,6 +1,6 @@
 import React from "react";
 
-export default() => {
+export default () => {
     return(
         <div className='col'>
             <div className='row'>

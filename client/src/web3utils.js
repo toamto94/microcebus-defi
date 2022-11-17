@@ -1,7 +1,7 @@
 
 import Microcebus from './contracts/microcebus_main.json';
-//import Web3 from "web3/dist/web3.min.js";
-import Web3 from "web";
+import Web3 from "web3/dist/web3.min.js";
+//import Web3 from "web3";
 
 const getWeb3 = () => {
     return new Web3('http://127.0.0.1:8545');

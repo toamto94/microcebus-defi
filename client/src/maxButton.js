@@ -1,6 +1,6 @@
 import React from "react";
 
-export default({farm}) => {
+export default ({farm}) => {
     return(
         <div className="col">
             <div className='row'>

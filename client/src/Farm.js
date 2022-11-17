@@ -5,7 +5,7 @@ import MaxButton from "./maxButton";
 import DepositWithdraw from "./depositWithdraw";
 import FundMonitoring from "./fundMonitoring";
 
-export default({farm}) => {
+export default ({farm}) => {
     return(
         <div className="row">
 
