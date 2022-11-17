@@ -4,14 +4,15 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 require('dotenv').config();
 const mnemonic = process.env["MNEMONIC"];
 const infuraProjectId = process.env["INFURA_PROJECT_ID"];
-//const path = require('path');
+const path = require('path');
 
 module.exports = {
 
   /**
   * contracts_build_directory tells Truffle where to store compiled contracts
   */
-  contracts_build_directory: './build/polygon-contracts',
+  //contracts_build_directory: './build/polygon-contracts',
+  contracts_build_directory: path.join(__dirname, 'client/src/contracts'),
 
   /**
   * contracts_directory tells Truffle where the contracts you want to compile are located
@@ -65,6 +66,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
+      version: "0.8.17" // Fetch exact version from solc-bin (default: truffle's version)
     }
   },
   db: {
