@@ -98,6 +98,21 @@ contract microcebus_main {
           deadline);
     }
 
+    //get balance of ERC20 token
+    function get_token_balance(string memory _token_identifier, address _token_owner) external view returns(uint256) {
+            return(iERC20(token_contracts[_token_identifier].adr).balanceOf(_token_owner));
+        }
+
+    //get balance of ERC20 token (sender)
+    function get_token_balance_sender(string memory _token_identifier) external view returns(uint256) {
+            return(iERC20(token_contracts[_token_identifier].adr).balanceOf(msg.sender));
+        }
+
+    //get balance of ERC20 token (contract)
+    function get_token_balance_contract(string memory _token_identifier) external view returns(uint256) {
+            return(iERC20(token_contracts[_token_identifier].adr).balanceOf(address(this)));
+        }
+
 
 
     //send MATIC to contract

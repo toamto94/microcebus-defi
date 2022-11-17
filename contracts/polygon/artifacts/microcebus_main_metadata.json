@@ -30,6 +30,68 @@
 				"type": "event"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_token_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_token_owner",
+						"type": "address"
+					}
+				],
+				"name": "get_token_balance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_token_identifier",
+						"type": "string"
+					}
+				],
+				"name": "get_token_balance_contract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_token_identifier",
+						"type": "string"
+					}
+				],
+				"name": "get_token_balance_sender",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "receive_wmatic",
 				"outputs": [],
@@ -151,11 +213,11 @@
 			]
 		},
 		"contracts/polygon/microcebus_main.sol": {
-			"keccak256": "0x14630b99a262e3df5370700435e6a3f887a296d88462ea8c5e4cfc78565b2bf1",
+			"keccak256": "0x853a2d3b79ba0900909c377a888fdc0f921cd9225bdb233127ae5f3d215ba55d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3f1d3286aa1eaaf608ed51e8d1f6358acdd58ef6a6ab7c4bf21ddd7fe8691716",
-				"dweb:/ipfs/QmUXK2AobxRZZ6US1r9uiyR2cy9Kkym6zu1LgEvQr4A5YF"
+				"bzz-raw://05458548a91476b0134c865e241b3db2527074d13298c1bbcdde384e84608437",
+				"dweb:/ipfs/QmZTkcdXQjv9hc973KtifLJGrJupQfBY8e287nejWhuVqr"
 			]
 		}
 	},
