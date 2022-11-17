@@ -26,7 +26,7 @@ contract microcebus_main {
     }
 
   //mappings
-  mapping(string => Token) tokenContracts;
+  mapping(string => Token) token_contracts;
 
   //third party addresses
   address constant UniswapV2Router02 = 0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff;
@@ -41,27 +41,67 @@ contract microcebus_main {
   //admin address
   address private admin;
 
-  
+  //contract constructor
   constructor() {
 
         admin = msg.sender;
-        tokenContracts["DAI"] = Token({adr: DAI, decimals: 18});
-        tokenContracts["WETH"] = Token({adr: WETH, decimals: 18});
-        tokenContracts["WMATIC"] = Token({adr: WMATIC, decimals: 18});
-        tokenContracts["USDC"] = Token({adr: USDC, decimals: 6});
-        tokenContracts["USDT"] = Token({adr: USDT, decimals: 6});
-        tokenContracts["WBTC"] = Token({adr: WBTC, decimals: 8});
-        tokenContracts["DQUICK"] = Token({adr: DQUICK, decimals: 18});
+        token_contracts["DAI"] = Token({adr: DAI, decimals: 18});
+        token_contracts["WETH"] = Token({adr: WETH, decimals: 18});
+        token_contracts["WMATIC"] = Token({adr: WMATIC, decimals: 18});
+        token_contracts["USDC"] = Token({adr: USDC, decimals: 6});
+        token_contracts["USDT"] = Token({adr: USDT, decimals: 6});
+        token_contracts["WBTC"] = Token({adr: WBTC, decimals: 8});
+        token_contracts["DQUICK"] = Token({adr: DQUICK, decimals: 18});
 
   }
 
-    //
-    function getWMATIC() external payable {
+    //modifiers
+    modifier check_token_approval(address _token_address, address _token_sender, address _token_receiver, uint256 _amount) {
+        require(iERC20(_token_address).allowance(_token_sender, _token_receiver) >= _amount,
+        "ERC20 contract has not given permission to this address.");
+        _;
+    }
 
-            (bool success, bytes memory data) = tokenContracts["WMATIC"].adr.call{value: msg.value}(abi.encodeWithSignature(""));
-            iERC20(tokenContracts["WMATIC"].adr).transferFrom(address(this), msg.sender, msg.value);
+
+    //developer function to get WMATIC to an address for testing reasons
+    function receive_wmatic() external payable {
+            (bool success, bytes memory data) = token_contracts["WMATIC"].adr.call{value: msg.value}(abi.encodeWithSignature(""));
+            iERC20(token_contracts["WMATIC"].adr).transferFrom(address(this), msg.sender, msg.value);
             emit Response(success, data);
         }
+
+    //send ERC20 token to a destination address
+    function transfer_token(string memory _token_in_identifier, address _token_receiver, uint256 _amount)
+      check_token_approval(token_contracts[_token_in_identifier].adr, msg.sender, _token_receiver, _amount) public {
+            iERC20(token_contracts[_token_in_identifier].adr).transferFrom(msg.sender, _token_receiver, _amount);
+        }
+
+    //send ERC20 token to this contract
+    function transfer_token_to_contract(string memory _token_in_identifier, uint256 _amount)
+      check_token_approval(token_contracts[_token_in_identifier].adr, msg.sender, address(this), _amount) public {
+            iERC20(token_contracts[_token_in_identifier].adr).transferFrom(msg.sender, address(this), _amount);
+        }
+
+    //swap exact tokens for tokens
+    function swap_exact_tokens_for_tokens(uint256 _amount_in, uint _amount_out_min, string memory _token_in_identifier,
+        string memory _token_out_identifier, uint deadline) external {
+        transfer_token_to_contract(_token_in_identifier, _amount_in);
+        address[] memory path = new address[](2);
+        path[0] = token_contracts[_token_in_identifier].adr;
+        path[1] = token_contracts[_token_out_identifier].adr;
+        iERC20(token_contracts[_token_in_identifier].adr).approve(UniswapV2Router02, _amount_in);     
+        IUniswapV2Router02(UniswapV2Router02).swapExactTokensForTokens(
+          _amount_in,
+          _amount_out_min,
+          path,
+          msg.sender,
+          deadline);
+    }
+
+
+
+    //send MATIC to contract
+    receive() external payable {}
 
 
 }

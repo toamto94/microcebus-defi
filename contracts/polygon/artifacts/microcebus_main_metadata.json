@@ -31,10 +31,88 @@
 			},
 			{
 				"inputs": [],
-				"name": "getWMATIC",
+				"name": "receive_wmatic",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount_in",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount_out_min",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_token_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_token_out_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					}
+				],
+				"name": "swap_exact_tokens_for_tokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_token_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_token_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer_token",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_token_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer_token_to_contract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -73,11 +151,11 @@
 			]
 		},
 		"contracts/polygon/microcebus_main.sol": {
-			"keccak256": "0xa6baf2508a6b64d0d77979d0229d827e4ee338790e8969d988c1f8f51eebaab3",
+			"keccak256": "0x14630b99a262e3df5370700435e6a3f887a296d88462ea8c5e4cfc78565b2bf1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://56a60469ee6753828ac547c559ca9077f1f9385dd7d393fe502988ade2ca092a",
-				"dweb:/ipfs/QmXMWY2z1bWcsPT9Knj9aTSQeWHBbkYuBuETLa3AtJGz2j"
+				"bzz-raw://3f1d3286aa1eaaf608ed51e8d1f6358acdd58ef6a6ab7c4bf21ddd7fe8691716",
+				"dweb:/ipfs/QmUXK2AobxRZZ6US1r9uiyR2cy9Kkym6zu1LgEvQr4A5YF"
 			]
 		}
 	},
