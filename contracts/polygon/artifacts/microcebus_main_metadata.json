@@ -1,0 +1,85 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "Response",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "getWMATIC",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/polygon/microcebus_main.sol": "microcebus_main"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/polygon/interfaces.sol": {
+			"keccak256": "0x0ab37ec5051aa23df9098559cae34e5eef4b914910ab04c27332d7a483a838b5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d20fb5a9e4eedaaa7c8a18d0cf61666f95b86855db65432a74ba5272ffd495ed",
+				"dweb:/ipfs/QmNsYqxXRHVpjXivL6uxQCfEQSApDJy3z1fUgicPgwEdBn"
+			]
+		},
+		"contracts/polygon/microcebus_main.sol": {
+			"keccak256": "0xa6baf2508a6b64d0d77979d0229d827e4ee338790e8969d988c1f8f51eebaab3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://56a60469ee6753828ac547c559ca9077f1f9385dd7d393fe502988ade2ca092a",
+				"dweb:/ipfs/QmXMWY2z1bWcsPT9Knj9aTSQeWHBbkYuBuETLa3AtJGz2j"
+			]
+		}
+	},
+	"version": 1
+}
