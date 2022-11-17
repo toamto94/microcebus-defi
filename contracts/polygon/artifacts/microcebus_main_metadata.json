@@ -32,6 +32,35 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_amount_in",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_token_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_token_out_identifier",
+						"type": "string"
+					}
+				],
+				"name": "get_amounts_out",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string",
 						"name": "_token_identifier",
 						"type": "string"
@@ -213,11 +242,11 @@
 			]
 		},
 		"contracts/polygon/microcebus_main.sol": {
-			"keccak256": "0x853a2d3b79ba0900909c377a888fdc0f921cd9225bdb233127ae5f3d215ba55d",
+			"keccak256": "0xcd617aa8a8706d9212ff3d112cc9d09746aaca309479de560f50726f55704358",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://05458548a91476b0134c865e241b3db2527074d13298c1bbcdde384e84608437",
-				"dweb:/ipfs/QmZTkcdXQjv9hc973KtifLJGrJupQfBY8e287nejWhuVqr"
+				"bzz-raw://09f79193b7f2674c6609c61699fc0922e86a407ac305687d8831ea3fd9d6099c",
+				"dweb:/ipfs/QmQVtyhddx1HEh9joW669b2G9EyHJps2VVKbXiF1WEesDb"
 			]
 		}
 	},

@@ -98,6 +98,19 @@ contract microcebus_main {
           deadline);
     }
 
+
+    //get amounts out
+    function get_amounts_out(
+    uint256 _amount_in,
+    string memory _token_in_identifier,
+    string memory _token_out_identifier) public view returns(uint256[] memory) {
+        address[] memory path;
+        path = new address[](2);
+        path[0] = token_contracts[_token_in_identifier].adr;
+        path[1] = token_contracts[_token_out_identifier].adr;
+        return(IUniswapV2Router02(UniswapV2Router02).getAmountsOut(_amount_in, path));
+    }
+
     //get balance of ERC20 token
     function get_token_balance(string memory _token_identifier, address _token_owner) external view returns(uint256) {
             return(iERC20(token_contracts[_token_identifier].adr).balanceOf(_token_owner));
