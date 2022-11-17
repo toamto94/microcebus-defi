@@ -15,10 +15,11 @@ const wmatic_dai = {
 function App() {
   const [farmList, setFarmList] = useState(undefined);
   const [web3, setWeb3] = useState(undefined);
+  const [microcebus, setMicrocebus] = useState(undefined);
 
   const updateFarmList = (token0, token1, token0_name, token1_name) => {
     const newFarm = {
-      id: 0,
+      id: farmList.length(),
       token0: token0,
       token1: token1,
       token0_name: token0_name,
@@ -26,9 +27,16 @@ function App() {
     }
     setFarmList(farmList.push(newFarm))
   }
+
   useEffect(() => {
     const init = async () => {
-      setFarmList([wmatic_dai]);
+    const web3 = getWeb3();
+    const microcebus = await getMicrocebus(web3);
+
+    setFarmList([wmatic_dai]);
+    setWeb3(web3);
+    setMicrocebus(microcebus);
+
     };
     init();
   }, []);
