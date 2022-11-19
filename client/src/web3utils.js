@@ -1,5 +1,6 @@
 
 import Microcebus from './contracts/microcebus_main.json';
+import iERC20 from './contracts/iERC20.json'
 import Web3 from "web3/dist/web3.min.js";
 //import Web3 from "web3";
 
@@ -14,4 +15,9 @@ const getMicrocebus = async web3 => {
         contract_deployment && contract_deployment.address);
 };
 
-export { getWeb3, getMicrocebus };
+const getERC20 = async (web3, contract_deployment_address) => {
+    return new web3.eth.Contract(iERC20.abi,
+        contract_deployment_address);
+};
+
+export { getWeb3, getMicrocebus, getERC20 };
