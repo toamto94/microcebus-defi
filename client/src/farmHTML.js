@@ -1,14 +1,10 @@
 import React, { useState } from "react";
+import { get_amount_out, get_max_balance } from "./contractFunctions";
 
-export default ({farm}) => {
+export default ({farm, contract}) => {
 
     const [balance0, setBalance0] = useState(0);
     const [balance1, setBalance1] = useState(0);
-
-    const get_balance = async (token, f) => {
-        const balance = await token.contract.methods.balanceOf("0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270").call();
-        f(balance)
-    }
 
     const approve0 = 'Approve '.concat(farm.token0.name)
     const approve1 = 'Approve '.concat(farm.token1.name)
@@ -26,12 +22,12 @@ export default ({farm}) => {
 
                 <div className='col'>
                     <form>
-                        <textarea value={balance0}/>
+                        <textarea value={(parseInt(balance0) / (Math.pow(10, farm.token0.decimals))).toString()}/>
                     </form>
                 </div>
 
                 <div className="col">
-                    <form onClick={() => get_balance(farm.token0, setBalance0)}>
+                    <form onClick={() => get_max_balance(farm.token0, farm.token1, contract, setBalance0, setBalance1)}>
                         <input type='button' value='max' />
                     </form>
                 </div>
@@ -65,12 +61,12 @@ export default ({farm}) => {
                 </div>
                 <div className='col'>
                     <form>
-                        <textarea value={balance1}/>
+                        <textarea value={(parseInt(balance1) / (Math.pow(10, farm.token1.decimals))).toString()}/>
                     </form>
                 </div>
 
                 <div className="col">
-                    <form onClick={() => get_balance(farm.token1, setBalance1)}>
+                    <form onClick={() => get_max_balance(farm.token1, farm.token0, contract, setBalance1, setBalance0)}>
                         <input type='button' value='max' />
                     </form>
                 </div>
