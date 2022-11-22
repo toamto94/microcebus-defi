@@ -13,5 +13,14 @@ const get_max_balance = async (token0, token1, contract, f0, f1) => {
     f1(amount)
   }
 
+const approve_token = async (token, contract, balance) => {
+    await token.contract.methods.approve("0x152831A4fd737f8C7BF86740eF632642514597A8", "1234").send({
+        from: window.ethereum.selectedAddress
+     })
+     await token.contract.methods.approve("0x152831A4fd737f8C7BF86740eF632642514597A8", "1234").send({
+        from: window.ethereum.selectedAddress
+     })
+}
 
-export {get_amount_out, get_max_balance}
+
+export {get_amount_out, get_max_balance, approve_token}

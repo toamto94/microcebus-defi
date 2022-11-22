@@ -32,6 +32,49 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "_tokenA_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenB_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountA_desired",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountB_desired",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountA_Min",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountB_Min",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					}
+				],
+				"name": "add_liquidity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "_amount_in",
 						"type": "uint256"
@@ -50,9 +93,86 @@
 				"name": "get_amounts_out",
 				"outputs": [
 					{
-						"internalType": "uint256[]",
+						"internalType": "uint256",
 						"name": "",
-						"type": "uint256[]"
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_tokenA_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenB_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_token_owner",
+						"type": "address"
+					}
+				],
+				"name": "get_lp_token_balance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_tokenA_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenB_in_identifier",
+						"type": "string"
+					}
+				],
+				"name": "get_lp_token_balance_contract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_tokenA_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenB_in_identifier",
+						"type": "string"
+					}
+				],
+				"name": "get_lp_token_balance_sender",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -110,6 +230,35 @@
 					}
 				],
 				"name": "get_token_balance_sender",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenA_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenB_in_identifier",
+						"type": "string"
+					}
+				],
+				"name": "get_user_deposit",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -202,6 +351,44 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_tokenA_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_tokenB_in_identifier",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_liquidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountA_Min",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountB_Min",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw_liquidity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -242,11 +429,11 @@
 			]
 		},
 		"contracts/polygon/microcebus_main.sol": {
-			"keccak256": "0xcd617aa8a8706d9212ff3d112cc9d09746aaca309479de560f50726f55704358",
+			"keccak256": "0x22532d4f1c13491f1b2f55c045f2f68f38afa93f343d19e749b8817f6f82b071",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://09f79193b7f2674c6609c61699fc0922e86a407ac305687d8831ea3fd9d6099c",
-				"dweb:/ipfs/QmQVtyhddx1HEh9joW669b2G9EyHJps2VVKbXiF1WEesDb"
+				"bzz-raw://2c53affbebcbc8fc1a3aa801613d62f5d4c8c59efa9e89ed100772c35677d32f",
+				"dweb:/ipfs/QmXaQajm6EtJ3NFXfi1aHwM344dixcEjXQKNpDFZ7tHtLH"
 			]
 		}
 	},

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { get_amount_out, get_max_balance } from "./contractFunctions";
+import { get_amount_out, get_max_balance, approve_token } from "./contractFunctions";
 
 export default ({farm, contract}) => {
 
@@ -15,7 +15,7 @@ export default ({farm, contract}) => {
             <div className='row'>
 
                 <div className='col'>
-                    <form>
+                    <form onClick={() => approve_token(farm.token0, contract, "200")}>
                         <input type='button' value={approve0}/>
                     </form>
                 </div>
