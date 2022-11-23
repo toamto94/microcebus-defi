@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { get_amount_out, get_max_balance, approve_token } from "./contractFunctions";
+import { get_amount_out, get_max_balance, approve_token, deposit_liquidity, get_balance } from "./contractFunctions";
 
 export default ({farm, contract}) => {
 
     const [balance0, setBalance0] = useState(0);
     const [balance1, setBalance1] = useState(0);
+    const [displayBalance0, setDisplayBalance0] = useState(0);
+    const [displayBalance1, setDisplayBalance1] = useState(0);
+    const [slippage, setSlippage] = useState(0.2);
+    const [timeout, setTimeout] = useState("10000000000000");
+
 
     const approve0 = 'Approve '.concat(farm.token0.name)
     const approve1 = 'Approve '.concat(farm.token1.name)
@@ -22,23 +27,24 @@ export default ({farm, contract}) => {
 
                 <div className='col'>
                     <form>
-                        <textarea value={(parseInt(balance0) / (Math.pow(10, farm.token0.decimals))).toString()}/>
+                        <textarea value={displayBalance0} onChange={(e) => get_balance(e.target.value, farm.token0, farm.token1, contract,
+                            setBalance0, setBalance1, setDisplayBalance0, setDisplayBalance1)}/>
                     </form>
                 </div>
 
                 <div className="col">
-                    <form onClick={() => get_max_balance(farm.token0, farm.token1, contract, setBalance0, setBalance1)}>
+                    <form onClick={() => get_max_balance(farm.token0, farm.token1, contract, setBalance0, setBalance1, setDisplayBalance0, setDisplayBalance1)}>
                         <input type='button' value='max' />
                     </form>
                 </div>
                 <div className='col'>
-                    <form>
+                    <form onClick={() => deposit_liquidity(farm.token0, farm.token1, contract, balance0, balance1, slippage, timeout)}>
                         <input type='button' value='Deposit' />
                     </form>
                 </div>
                 <div className="col">
                     <div className="row">
-                        Current Deposit: 
+                        Current Deposit:
                     </div>
                     <div className="row">
                         Compounding reward LP
@@ -61,12 +67,13 @@ export default ({farm, contract}) => {
                 </div>
                 <div className='col'>
                     <form>
-                        <textarea value={(parseInt(balance1) / (Math.pow(10, farm.token1.decimals))).toString()}/>
+                        <textarea value={displayBalance1} onChange={(e) => get_balance(e.target.value, farm.token1, farm.token0, contract,
+                            setBalance1, setBalance0, setDisplayBalance1, setDisplayBalance0)}/>
                     </form>
                 </div>
 
                 <div className="col">
-                    <form onClick={() => get_max_balance(farm.token1, farm.token0, contract, setBalance1, setBalance0)}>
+                    <form onClick={() => get_max_balance(farm.token1, farm.token0, contract, setBalance1, setBalance0, setDisplayBalance1, setDisplayBalance0)}>
                         <input type='button' value='max' />
                     </form>
                 </div>

@@ -429,11 +429,11 @@
 			]
 		},
 		"contracts/polygon/microcebus_main.sol": {
-			"keccak256": "0x22532d4f1c13491f1b2f55c045f2f68f38afa93f343d19e749b8817f6f82b071",
+			"keccak256": "0x6c56875c2ca6c15826f6d1ef1889e143e7506b2a2d1d9c6a38315f03180b030c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2c53affbebcbc8fc1a3aa801613d62f5d4c8c59efa9e89ed100772c35677d32f",
-				"dweb:/ipfs/QmXaQajm6EtJ3NFXfi1aHwM344dixcEjXQKNpDFZ7tHtLH"
+				"bzz-raw://ae3dd8b7b8ac9689de31e40e939a3d5badc9e35ce26ab1e44f0823c0c77a7d2f",
+				"dweb:/ipfs/QmVBbTWX8uqEKASqC3FkXKyFaXNUeRfxGDv5Q2htNBkZ8X"
 			]
 		}
 	},
