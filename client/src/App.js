@@ -32,15 +32,23 @@ function App() {
       name: "wmatic-dai",
       token0: erc20.WMATIC,
       token1: erc20.DAI,
+      address: "0xEEf611894CeaE652979C9D0DaE1dEb597790C6eE",
+      decimals: 18
     },
     {
-      id: 0,
+      id: 1,
       name: "wbtc-weth",
       token0: erc20.WBTC,
       token1: erc20.WETH,
+      address: "0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D",
+      decimals: 18
     }
   ]
 
+  farmList.forEach(async farm => {
+    farm.contract = await getERC20(web3, farm.address)
+  })
+  
     setFarmList(farmList);
     setErc20(erc20);
     setWeb3(web3);

@@ -1,3 +1,9 @@
+  /**
+   * @title Microcebus
+   * @dev Tom
+   * @custom:dev-run-script ../scripts/deploy.js
+   */
+
 // SPDX-License-Identifier: MIT
 import "./interfaces.sol";
 
@@ -145,33 +151,52 @@ contract microcebus_main {
                 address(this),
                 deadline
             );
-            update_deposit(_tokenA_in_identifier, _tokenB_in_identifier, msg.sender);
+            add_deposit(_tokenA_in_identifier, _tokenB_in_identifier, msg.sender);
         }
 
 
     //add liquidity
     function withdraw_liquidity(string memory _tokenA_in_identifier, string memory _tokenB_in_identifier,
         uint256 _liquidity, uint256 _amountA_Min, uint256 _amountB_Min, uint deadline)
-            check_enough_balance_withdraw(_tokenA_in_identifier, _tokenA_in_identifier, _liquidity, msg.sender) external {
+            check_enough_balance_withdraw(_tokenA_in_identifier, _tokenB_in_identifier, _liquidity, msg.sender) external {
 
-            IUniswapV2Router02(UniswapV2Router02).removeLiquidity(
-                token_contracts[_tokenA_in_identifier].adr,
-                token_contracts[_tokenB_in_identifier].adr,
-                _liquidity,
-                _amountA_Min,
-                _amountB_Min,
-                msg.sender,
-                deadline
-            );
-            update_deposit(_tokenA_in_identifier, _tokenB_in_identifier, msg.sender);
+                iERC20(lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].adr).approve(UniswapV2Router02, _liquidity);
+
+
+                IUniswapV2Router02(UniswapV2Router02).removeLiquidity(
+                    token_contracts[_tokenA_in_identifier].adr,
+                    token_contracts[_tokenB_in_identifier].adr,
+                    _liquidity,
+                    _amountA_Min,
+                    _amountB_Min,
+                    msg.sender,
+                    deadline
+                );
+                withdraw_deposit(_tokenA_in_identifier, _tokenB_in_identifier, msg.sender);
         }
 
-    //update users farm deposit
-    function update_deposit(string memory _tokenA_in_identifier, string memory _tokenB_in_identifier, address _user) private {
+    //add users farm deposit
+    function add_deposit(string memory _tokenA_in_identifier, string memory _tokenB_in_identifier, address _user) private {
         uint256 amount = iERC20(lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].adr).balanceOf(address(this));
         uint256 user_deposit = amount - lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].contract_deposit;
         lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].user_deposits[_user] += user_deposit;
         lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].contract_deposit = amount;
+    }
+
+    //withdraw users farm deposit
+    function withdraw_deposit(string memory _tokenA_in_identifier, string memory _tokenB_in_identifier, address _user) private {
+        uint256 amount = iERC20(lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].adr).balanceOf(address(this));
+        uint256 user_deposit = lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].contract_deposit - amount;
+        lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].user_deposits[_user] -= user_deposit;
+        lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].contract_deposit = amount;
+    }
+
+
+
+    //get reserves
+    function get_reserves(string memory _tokenA_in_identifier, string memory _tokenB_in_identifier) public view returns(uint112, uint112) {
+        (uint112 reserve0, uint112 reserve1, ) = IUniswapV2Pair(lp_token_contracts[_tokenA_in_identifier][_tokenB_in_identifier].adr).getReserves();
+        return(reserve0, reserve1);
     }
 
 

@@ -194,6 +194,36 @@
   {
     "inputs": [
       {
+        "internalType": "string",
+        "name": "_tokenA_in_identifier",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_tokenB_in_identifier",
+        "type": "string"
+      }
+    ],
+    "name": "get_reserves",
+    "outputs": [
+      {
+        "internalType": "uint112",
+        "name": "",
+        "type": "uint112"
+      },
+      {
+        "internalType": "uint112",
+        "name": "",
+        "type": "uint112"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "_amount_in",
         "type": "uint256"
